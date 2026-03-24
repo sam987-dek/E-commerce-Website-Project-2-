@@ -100,5 +100,5 @@ Command-click or copy/paste **`http://localhost:5173/`** into your browser, and 
 ## 👨‍💻 Author Profile
 - **Built By**: Samarth
 - **Roll Number**: 25bcs10405
-- **Repository Link**: [sam987-dek/E-commerce-Website-Project-2-](https://github.com/sam987-dek/E-commerce-Website-Project-2-)
+- website link : https://e-commerce-website-project-2.vercel.app/
 >>>>>>> 36104e2 (Updated ui)
