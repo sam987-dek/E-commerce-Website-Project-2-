@@ -107,7 +107,7 @@ const Checkout = () => {
           </form>
         </div>
 
-        <div className="w-full xl:w-1/3 bg-slate-50 border border-slate-200 rounded-[2rem] p-8 sm:p-10 static xl:sticky top-[100px] shadow-sm">
+        <div className="w-full xl:w-1/3 bg-slate-50 border border-slate-200 rounded-[2rem] p-8 sm:p-10 relative xl:sticky top-[100px] shadow-sm">
           <h2 className="text-2xl font-extrabold text-slate-800 mb-6 pb-5 border-b-2 border-slate-200">Order Summary</h2>
           <div className="max-h-80 overflow-y-auto mb-6 pr-3 space-y-4 custom-scrollbar">
             {cartItems.map(item => (

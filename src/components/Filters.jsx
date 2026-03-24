@@ -2,7 +2,7 @@ import React from 'react';
 
 const Filters = ({ categories, selectedCategory, onCategoryChange, priceRange, onPriceChange, sortBy, onSortChange }) => {
   return (
-    <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 h-max static lg:sticky top-[90px]">
+    <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 h-max relative lg:sticky top-[90px]">
       <div className="mb-8 last:mb-0">
         <h3 className="text-lg font-extrabold mb-4 text-slate-800 border-b-2 border-slate-100 pb-2">Categories</h3>
         <ul className="flex flex-col gap-3">

@@ -39,7 +39,7 @@ const Cart = () => {
           ))}
         </div>
 
-        <div className="w-full lg:w-1/3 bg-slate-900 text-white border border-slate-800 rounded-3xl p-8 static lg:sticky top-[100px] shadow-2xl overflow-hidden relative">
+        <div className="w-full lg:w-1/3 bg-slate-900 text-white border border-slate-800 rounded-3xl p-8 relative lg:sticky top-[100px] shadow-2xl overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-emerald-500/20 pointer-events-none"></div>
           <h2 className="text-2xl font-black mb-8 border-b-2 border-slate-700/50 pb-4 relative z-10">Order Summary</h2>
           
