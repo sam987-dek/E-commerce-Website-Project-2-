@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white/90 backdrop-blur-md fixed top-0 w-full h-[70px] flex items-center border-b border-slate-200 z-50 shadow-sm transition-all">
-      <div className="container mx-auto px-4 flex justify-between items-center w-full max-w-7xl">
+      <div className="container mx-auto px-4 py-3 md:py-4 flex justify-between items-center w-full max-w-7xl">
         <Link to="/" className="text-2xl font-extrabold text-slate-900 tracking-tight hover:opacity-80 transition-opacity">
           S'<span className="text-blue-600">MART</span>
         </Link>
@@ -40,7 +40,7 @@ const Navbar = () => {
           </button>
         </form>
 
-        <div className="flex items-center gap-4 sm:gap-6">
+        <div className="flex items-center gap-5 sm:gap-8">
           <Link to="/products" className="hidden sm:block font-medium text-slate-700 hover:text-blue-600 transition-colors">Products</Link>
           
           <Link to="/wishlist" className="relative text-slate-700 hover:text-blue-600 hover:scale-110 transition-all duration-200 flex items-center group">

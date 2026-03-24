@@ -77,7 +77,12 @@ const Products = () => {
       break;
   }
 
-  if (loading) return <div className="flex items-center justify-center min-h-[50vh]"><div className="w-12 h-12 border-4 border-slate-200 border-l-blue-600 rounded-full animate-spin"></div></div>;
+  if (loading) return (
+    <div className="page-container min-h-[80vh] flex flex-col items-center justify-center gap-6">
+      <div className="w-16 h-16 border-4 border-slate-200 border-l-blue-600 rounded-full animate-spin"></div>
+      <p className="text-slate-500 font-bold animate-pulse text-lg">Loading amazing products...</p>
+    </div>
+  );
 
   return (
     <div className="page-container min-h-[80vh]">
@@ -136,7 +141,20 @@ const Products = () => {
               className="w-full bg-white border-2 border-slate-200 rounded-xl pl-11 pr-4 py-3 font-medium text-slate-700 focus:outline-none focus:border-blue-500 transition-all shadow-sm"
             />
           </div>
-          <ProductGrid products={filteredProducts} />
+          {filteredProducts.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-20 bg-white rounded-3xl border-2 border-dashed border-slate-200 text-center px-4">
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-800 mb-4">No products found</h2>
+              <p className="text-slate-500 font-medium text-lg max-w-md">We couldn't find any items matching your current filters or search query.</p>
+              <button 
+                onClick={() => { updateQuery('search', 'all'); updateQuery('category', 'all'); updateQuery('price', 'all'); }} 
+                className="mt-8 bg-slate-900 text-white font-bold px-8 py-4 rounded-xl hover:bg-slate-800 transition-all hover:-translate-y-1 shadow-lg"
+              >
+                Clear All Filters
+              </button>
+            </div>
+          ) : (
+            <ProductGrid products={filteredProducts} />
+          )}
         </main>
       </div>
     </div>

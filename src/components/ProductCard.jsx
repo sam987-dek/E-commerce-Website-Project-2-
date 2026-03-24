@@ -4,6 +4,7 @@ import { FiShoppingCart, FiHeart, FiStar } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
 import { useCart } from '../hooks/useCart';
 import { useWishlist } from '../hooks/useWishlist';
+import { toast } from 'react-toastify';
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
@@ -46,7 +47,8 @@ const ProductCard = ({ product }) => {
             className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-2 rounded-lg text-sm font-medium transition-all hover:shadow-lg hover:shadow-blue-500/30 active:scale-95 shadow-sm"
             onClick={(e) => {
               e.preventDefault();
-              addToCart(product);
+              addToCart(product, 1);
+              toast.success(`${product.title} added to cart!`);
             }}
           >
             <FiShoppingCart size={16} /> Add

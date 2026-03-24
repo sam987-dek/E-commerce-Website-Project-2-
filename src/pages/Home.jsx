@@ -70,9 +70,9 @@ const Home = () => {
         <div className="flex justify-between items-end mb-8 border-b-2 border-slate-200 pb-4">
           <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Shop by Category</h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="flex overflow-x-auto snap-x no-scrollbar pb-6 px-1 md:px-0 md:pb-0 md:grid md:grid-cols-4 gap-4 md:gap-6">
           {categories.slice(0, 4).map(cat => (
-            <Link to={`/products?category=${cat}`} key={cat} className="group relative h-48 rounded-2xl overflow-hidden flex items-center justify-center text-center transition-all hover:shadow-2xl hover:shadow-blue-500/20 bg-slate-800">
+            <Link to={`/products?category=${cat}`} key={cat} className="group relative h-48 shrink-0 w-[70vw] sm:w-[45vw] md:w-auto snap-center rounded-2xl overflow-hidden flex items-center justify-center text-center transition-all hover:shadow-2xl hover:shadow-blue-500/20 bg-slate-800">
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-700 to-emerald-400 opacity-90 group-hover:opacity-100 transition-opacity z-0"></div>
               <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10"></div>
               <div className="relative z-20 p-6 transform group-hover:scale-110 transition-transform duration-500 flex flex-col items-center">
