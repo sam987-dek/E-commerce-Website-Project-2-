@@ -31,8 +31,10 @@ const CartItem = ({ item }) => {
           </button>
           <span className="w-12 text-center font-bold text-base text-slate-800">{item.quantity}</span>
           <button 
-            className="p-3 hover:bg-white transition-colors text-slate-500 hover:text-blue-600 active:bg-slate-100"
+            className="p-3 hover:bg-white transition-colors text-slate-500 hover:text-blue-600 active:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed"
             onClick={() => updateQuantity(item.id, item.quantity + 1)}
+            disabled={item.quantity >= 5}
+            title="Increase quantity (Max 5)"
           >
             <FiPlus size={18} />
           </button>

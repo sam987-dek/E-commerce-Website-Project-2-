@@ -96,8 +96,10 @@ const ProductDetails = () => {
               </button>
               <span className="w-14 text-center font-black text-2xl text-slate-900">{quantity}</span>
               <button 
-                className="p-5 text-slate-500 hover:text-blue-600 hover:bg-white transition-colors active:bg-slate-100"
-                onClick={() => setQuantity(q => q + 1)}
+                className="p-5 text-slate-500 hover:text-blue-600 hover:bg-white transition-colors active:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed"
+                onClick={() => setQuantity(q => Math.min(5, q + 1))}
+                disabled={quantity >= 5}
+                title="Increase quantity (Max 5)"
               >
                 <FiPlus size={22} />
               </button>

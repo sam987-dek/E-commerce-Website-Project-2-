@@ -42,7 +42,7 @@ const Checkout = () => {
 
   const onSubmit = (data) => {
     setTimeout(() => {
-      toast.success(`Order placed successfully, ${data.fullName}!`);
+      toast.success(`Order placed successfully, ${data.fullName}! Tracking and order details have been securely sent to your email.`);
       clearCart();
       navigate('/');
     }, 1000);
