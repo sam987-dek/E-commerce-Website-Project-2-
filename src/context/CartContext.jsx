@@ -28,21 +28,21 @@ export const CartProvider = ({ children }) => {
   const addToCart = (product, quantity = 1) => {
     const existing = cartItems.find(item => item.id === product.id);
     if (existing) {
-      toast.info(`Increased ${product.title} quantity`);
+      toast.info(`Increased ${product.title} quantity in cart`, { toastId: `cart-inc-${product.id}` });
       setCartItems(prev =>
         prev.map(item =>
           item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
         )
       );
     } else {
-      toast.success(`${product.title} added to cart`);
+      toast.success(`${product.title} added to cart`, { toastId: `cart-add-${product.id}` });
       setCartItems(prev => [...prev, { ...product, quantity }]);
     }
   };
 
   const removeFromCart = (productId) => {
     setCartItems(prev => prev.filter(item => item.id !== productId));
-    toast.error('Item removed from cart');
+    toast.error('Item removed from cart', { toastId: `cart-rm-${productId}` });
   };
 
   const updateQuantity = (productId, quantity) => {
@@ -65,10 +65,10 @@ export const CartProvider = ({ children }) => {
   const toggleWishlist = (product) => {
     const existing = wishlistItems.find(item => item.id === product.id);
     if (existing) {
-      toast.info(`${product.title} removed from wishlist`);
+      toast.error(`${product.title} removed from wishlist`, { toastId: `wish-rm-${product.id}` });
       setWishlistItems(prev => prev.filter(item => item.id !== product.id));
     } else {
-      toast.success(`${product.title} added to wishlist`);
+      toast.success(`${product.title} added to wishlist`, { toastId: `wish-add-${product.id}` });
       setWishlistItems(prev => [...prev, product]);
     }
   };

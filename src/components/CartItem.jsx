@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiTrash2, FiMinus, FiPlus } from 'react-icons/fi';
 import { useCart } from '../hooks/useCart';
-import { toast } from 'react-toastify';
 
 const CartItem = ({ item }) => {
   const { updateQuantity, removeFromCart } = useCart();
@@ -49,7 +48,6 @@ const CartItem = ({ item }) => {
           className="p-3 text-slate-400 hover:text-white hover:bg-red-500 bg-slate-50 rounded-xl transition-all shadow-sm hover:shadow-md active:scale-95" 
           onClick={() => {
             removeFromCart(item.id);
-            toast.info(`${item.title} removed from cart.`);
           }}
           aria-label="Remove item"
         >

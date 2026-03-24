@@ -5,7 +5,6 @@ import { FaHeart } from 'react-icons/fa';
 import { fetchProductById } from '../services/api';
 import { useCart } from '../hooks/useCart';
 import { useWishlist } from '../hooks/useWishlist';
-import { toast } from 'react-toastify';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -110,7 +109,6 @@ const ProductDetails = () => {
               className="flex-grow flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-black text-xl px-8 py-5 rounded-2xl transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/30 active:scale-95 shadow-lg shadow-blue-500/20"
               onClick={() => {
                 addToCart(product, quantity);
-                toast.success(`${quantity}x ${product.title} added to cart!`);
               }}
             >
               <FiShoppingCart size={24} /> Add to Cart
