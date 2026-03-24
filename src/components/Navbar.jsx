@@ -40,8 +40,8 @@ const Navbar = () => {
           </button>
         </form>
 
-        <div className="flex items-center gap-6">
-          <Link to="/products" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">Products</Link>
+        <div className="flex items-center gap-4 sm:gap-6">
+          <Link to="/products" className="hidden sm:block font-medium text-slate-700 hover:text-blue-600 transition-colors">Products</Link>
           
           <Link to="/wishlist" className="relative text-slate-700 hover:text-blue-600 hover:scale-110 transition-all duration-200 flex items-center group">
             <FiHeart size={22} className="group-hover:fill-blue-50" />

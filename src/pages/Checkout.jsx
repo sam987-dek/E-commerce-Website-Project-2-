@@ -107,13 +107,13 @@ const Checkout = () => {
           </form>
         </div>
 
-        <div className="w-full xl:w-1/3 bg-slate-50 border border-slate-200 rounded-[2rem] p-8 sm:p-10 sticky top-[100px] shadow-sm">
+        <div className="w-full xl:w-1/3 bg-slate-50 border border-slate-200 rounded-[2rem] p-8 sm:p-10 static xl:sticky top-[100px] shadow-sm">
           <h2 className="text-2xl font-extrabold text-slate-800 mb-6 pb-5 border-b-2 border-slate-200">Order Summary</h2>
           <div className="max-h-80 overflow-y-auto mb-6 pr-3 space-y-4 custom-scrollbar">
             {cartItems.map(item => (
               <div key={item.id} className="flex justify-between items-start text-sm font-bold text-slate-600 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm transition-transform hover:-translate-y-0.5">
                 <span className="flex-1 pr-4 line-clamp-2 leading-snug">{item.quantity}x {item.title}</span>
-                <span className="text-slate-900 font-black text-base">${(item.price * item.quantity).toFixed(2)}</span>
+                <span className="text-slate-900 font-black text-base">₹{(item.price * item.quantity).toLocaleString('en-IN')}</span>
               </div>
             ))}
           </div>
@@ -121,11 +121,11 @@ const Checkout = () => {
           <div className="border-t-2 border-slate-200 pt-6 space-y-4 font-bold text-slate-600">
             <div className="flex justify-between text-base">
               <span>Subtotal</span>
-              <span className="text-slate-900">${cartTotal.toFixed(2)}</span>
+              <span className="text-slate-900">₹{cartTotal.toLocaleString('en-IN')}</span>
             </div>
             <div className="flex justify-between text-base">
               <span>Tax (10%)</span>
-              <span className="text-slate-900">${tax.toFixed(2)}</span>
+              <span className="text-slate-900">₹{tax.toLocaleString('en-IN')}</span>
             </div>
             <div className="flex justify-between text-green-600 text-base">
               <span>Shipping</span>
@@ -133,7 +133,7 @@ const Checkout = () => {
             </div>
             <div className="flex justify-between text-3xl font-black text-slate-900 pt-6 mt-6 border-t-2 border-slate-200">
               <span>Total</span>
-              <span>${finalTotal.toFixed(2)}</span>
+              <span>₹{finalTotal.toLocaleString('en-IN')}</span>
             </div>
           </div>
         </div>

@@ -78,7 +78,7 @@ const ProductDetails = () => {
           </div>
 
           <div className="text-4xl md:text-5xl font-black text-slate-900 mb-8 tracking-tighter flex items-center gap-4">
-            ${product.price.toFixed(2)}
+            ₹{product.price.toLocaleString('en-IN')}
             <span className="text-sm font-black text-emerald-600 bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-200 uppercase tracking-wider shadow-inner">In Stock</span>
           </div>
 
@@ -116,7 +116,7 @@ const ProductDetails = () => {
               <div className="bg-blue-100 p-3 rounded-full text-blue-600">
                 <FiTruck size={24} />
               </div>
-              <span>Free Delivery<br/><span className="text-slate-500 font-semibold text-xs mt-0.5 inline-block">Orders over $50</span></span>
+              <span>Free Delivery<br/><span className="text-slate-500 font-semibold text-xs mt-0.5 inline-block">Orders over ₹5,000</span></span>
             </div>
             <div className="flex items-center gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm transition-transform hover:-translate-y-1">
               <div className="bg-blue-100 p-3 rounded-full text-blue-600">

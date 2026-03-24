@@ -10,10 +10,12 @@ const api = axiosInstance.create({
   },
 });
 
+const EXCHANGE_RATE = 83;
+
 const mapProduct = (p) => ({
   id: p.id,
   title: p.title,
-  price: p.price,
+  price: Math.round(p.price * EXCHANGE_RATE),
   description: p.description,
   category: p.category,
   image: p.thumbnail, // Map DummyJSON thumbnail to image

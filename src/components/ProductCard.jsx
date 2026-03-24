@@ -41,7 +41,7 @@ const ProductCard = ({ product }) => {
         </div>
 
         <div className="flex items-center justify-between border-t border-slate-100 pt-4 mt-2">
-          <span className="text-xl font-extrabold text-slate-900">${product.price.toFixed(2)}</span>
+          <span className="text-xl font-extrabold text-slate-900">₹{product.price.toLocaleString('en-IN')}</span>
           <button 
             className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-2 rounded-lg text-sm font-medium transition-all hover:shadow-lg hover:shadow-blue-500/30 active:scale-95 shadow-sm"
             onClick={(e) => {

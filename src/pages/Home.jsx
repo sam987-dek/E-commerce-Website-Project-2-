@@ -46,7 +46,7 @@ const Home = () => {
           autoplay={{ delay: 6000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           navigation
-          className="w-full h-full [&_.swiper-pagination-bullet-active]:bg-blue-600 [&_.swiper-button-next]:text-white [&_.swiper-button-prev]:text-white [&_.swiper-button-next]:bg-black/30 [&_.swiper-button-prev]:bg-black/30 [&_.swiper-button-next]:px-6 [&_.swiper-button-prev]:px-6 [&_.swiper-button-next]:py-8 [&_.swiper-button-prev]:py-8 hover:[&_.swiper-button-next]:bg-blue-600 hover:[&_.swiper-button-prev]:bg-blue-600 [&_.swiper-button-next]:rounded-xl [&_.swiper-button-prev]:rounded-xl transition-all"
+          className="w-full h-full [&_.swiper-pagination-bullet-active]:bg-blue-600 [&_.swiper-button-next]:text-white [&_.swiper-button-prev]:text-white [&_.swiper-button-next]:drop-shadow-lg [&_.swiper-button-prev]:drop-shadow-lg hover:[&_.swiper-button-next]:scale-125 hover:[&_.swiper-button-prev]:scale-125 hover:[&_.swiper-button-next]:text-blue-600 hover:[&_.swiper-button-prev]:text-blue-600 [&_.swiper-button-next]:transition-all [&_.swiper-button-prev]:transition-all"
         >
           {heroBanners.map(banner => (
             <SwiperSlide key={banner.id}>

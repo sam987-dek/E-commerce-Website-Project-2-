@@ -17,7 +17,7 @@ const CartItem = ({ item }) => {
           <h4 className="text-lg font-bold text-slate-900 mb-1.5 line-clamp-2 hover:text-blue-600 transition-colors">{item.title}</h4>
         </Link>
         <p className="text-xs font-black text-blue-600 opacity-80 uppercase tracking-widest mb-3">{item.category}</p>
-        <span className="font-extrabold text-2xl text-slate-900">${item.price.toFixed(2)}</span>
+        <span className="font-extrabold text-2xl text-slate-900">₹{item.price.toLocaleString('en-IN')}</span>
       </div>
 
       <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-end gap-x-6 gap-y-4 w-full md:w-auto mt-4 md:mt-0 pt-5 md:pt-0 border-t md:border-t-0 border-slate-100">
@@ -39,7 +39,7 @@ const CartItem = ({ item }) => {
         </div>
         
         <div className="font-black text-2xl min-w-[120px] text-right text-slate-900">
-          ${(item.price * item.quantity).toFixed(2)}
+          ₹{(item.price * item.quantity).toLocaleString('en-IN')}
         </div>
         
         <button 

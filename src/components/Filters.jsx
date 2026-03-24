@@ -2,7 +2,7 @@ import React from 'react';
 
 const Filters = ({ categories, selectedCategory, onCategoryChange, priceRange, onPriceChange, sortBy, onSortChange }) => {
   return (
-    <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 h-max sticky top-[90px]">
+    <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 h-max static lg:sticky top-[90px]">
       <div className="mb-8 last:mb-0">
         <h3 className="text-lg font-extrabold mb-4 text-slate-800 border-b-2 border-slate-100 pb-2">Categories</h3>
         <ul className="flex flex-col gap-3">
@@ -45,10 +45,10 @@ const Filters = ({ categories, selectedCategory, onCategoryChange, priceRange, o
           onChange={(e) => onPriceChange(e.target.value)}
         >
           <option value="all">All Prices</option>
-          <option value="0-50">$0 - $50</option>
-          <option value="50-100">$50 - $100</option>
-          <option value="100-500">$100 - $500</option>
-          <option value="500+">$500+</option>
+          <option value="0-5000">₹0 - ₹5,000</option>
+          <option value="5000-20000">₹5,000 - ₹20,000</option>
+          <option value="20000-50000">₹20,000 - ₹50,000</option>
+          <option value="50000+">₹50,000+</option>
         </select>
       </div>
 
