@@ -6,14 +6,17 @@ import { BrowserRouter } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { CartProvider } from './context/CartContext.jsx'
+import { ThemeProvider } from './context/ThemeContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter>
+
+  <BrowserRouter>
+    <ThemeProvider>
       <CartProvider>
         <App />
         <ToastContainer position="bottom-right" theme="colored" autoClose={2500} limit={2} />
       </CartProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
+    </ThemeProvider>
+  </BrowserRouter>
+
 )

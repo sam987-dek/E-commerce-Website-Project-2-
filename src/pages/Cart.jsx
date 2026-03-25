@@ -2,7 +2,8 @@ import React from 'react';
 import { useCart } from '../hooks/useCart';
 import CartItem from '../components/CartItem';
 import { Link, useNavigate } from 'react-router-dom';
-import { FiShoppingCart, FiCreditCard } from 'react-icons/fi';
+import { FiShoppingCart, FiCreditCard, FiCheckCircle } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 
 const Cart = () => {
   const { cartItems, cartTotal, clearCart } = useCart();
@@ -11,12 +12,12 @@ const Cart = () => {
   if (cartItems.length === 0) {
     return (
       <div className="page-container min-h-[70vh]">
-        <div className="text-center py-32 px-5 bg-white rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center justify-center">
-          <div className="bg-slate-50 p-10 rounded-full mb-8 shadow-inner border border-slate-100">
-            <FiShoppingCart className="text-slate-300" size={80} />
+        <div className="text-center py-32 px-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col items-center justify-center transition-colors">
+          <div className="bg-slate-50 dark:bg-slate-900 p-10 rounded-full mb-8 shadow-inner border border-slate-100 dark:border-slate-700">
+            <FiShoppingCart className="text-slate-300 dark:text-slate-600" size={80} />
           </div>
-          <h2 className="text-3xl font-black text-slate-800 mb-4 tracking-tight">Your cart is empty</h2>
-          <p className="text-slate-500 mb-10 max-w-md text-lg font-medium">Looks like you haven't added anything to your cart yet. Discover something new today!</p>
+          <h2 className="text-3xl font-black text-slate-800 dark:text-white mb-4 tracking-tight">Your cart is empty</h2>
+          <p className="text-slate-500 dark:text-slate-400 mb-10 max-w-md text-lg font-medium">Looks like you haven't added anything to your cart yet. Discover something new today!</p>
           <Link to="/products" className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-10 py-5 rounded-xl transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/30 active:scale-95 text-lg">
             Start Shopping
           </Link>
@@ -27,9 +28,9 @@ const Cart = () => {
 
   return (
     <div className="page-container min-h-[70vh]">
-      <div className="flex flex-wrap items-center justify-between mb-8 border-b-2 border-slate-200 pb-5 gap-4">
-        <h1 className="text-4xl font-black text-slate-900 tracking-tight">Shopping Cart</h1>
-        <button onClick={clearCart} className="text-red-500 font-bold hover:text-red-700 hover:underline px-4 py-2 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-200 active:scale-95">Clear Cart</button>
+      <div className="flex flex-wrap items-center justify-between mb-8 border-b-2 border-slate-200 dark:border-slate-800 pb-5 gap-4 transition-colors">
+        <h1 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight">Shopping Cart</h1>
+        <button onClick={clearCart} className="text-red-500 dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:underline px-4 py-2 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors border border-transparent hover:border-red-200 dark:hover:border-red-800/50 active:scale-95">Clear Cart</button>
       </div>
       
       <div className="flex flex-col lg:flex-row gap-10 items-start">
@@ -66,10 +67,15 @@ const Cart = () => {
           </div>
           
           <button 
-            className="w-full bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xl py-5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/40 active:scale-[0.98] flex items-center justify-center gap-3 relative z-10 border border-blue-400/30 text-shadow-sm"
-            onClick={() => navigate('/checkout')}
+            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-xl py-5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/40 active:scale-[0.98] flex items-center justify-center gap-3 relative z-10 border border-blue-400/30 text-shadow-sm"
+            onClick={() => {
+              const orderData = { items: cartItems, total: cartTotal };
+              clearCart();
+              toast.success("Order processed successfully!");
+              navigate('/order-success', { state: { orderData } });
+            }}
           >
-            <FiCreditCard size={24} /> Proceed to Checkout
+            <FiCheckCircle size={24} /> Place Order Directly
           </button>
         </div>
       </div>

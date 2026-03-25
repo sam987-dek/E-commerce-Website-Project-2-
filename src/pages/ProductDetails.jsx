@@ -5,6 +5,7 @@ import { FaHeart } from 'react-icons/fa';
 import { fetchProductById } from '../services/api';
 import { useCart } from '../hooks/useCart';
 import { useWishlist } from '../hooks/useWishlist';
+import { motion } from 'framer-motion';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -31,14 +32,14 @@ const ProductDetails = () => {
   }, [id]);
 
   if (loading) {
-    return <div className="flex items-center justify-center min-h-[60vh]"><div className="w-16 h-16 border-[6px] border-slate-200 border-l-blue-600 rounded-full animate-spin"></div></div>;
+    return <div className="flex items-center justify-center min-h-[60vh]"><div className="w-16 h-16 border-[6px] border-slate-200 dark:border-slate-700 border-l-blue-600 dark:border-l-blue-400 rounded-full animate-spin"></div></div>;
   }
 
   if (!product) {
     return (
-      <div className="text-center py-32 px-5 bg-white border border-slate-200 rounded-3xl m-8 shadow-sm">
-        <h2 className="text-3xl font-black text-slate-800 mb-4">Product not found</h2>
-        <button onClick={() => navigate('/products')} className="bg-blue-600 text-white font-bold px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">Back to Shop</button>
+      <div className="text-center py-32 px-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl m-8 shadow-sm transition-colors">
+        <h2 className="text-3xl font-black text-slate-800 dark:text-slate-100 mb-4">Product not found</h2>
+        <button onClick={() => navigate('/products')} className="bg-blue-600 dark:bg-blue-500 text-white font-bold px-8 py-3 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors">Back to Shop</button>
       </div>
     );
   }
@@ -47,56 +48,61 @@ const ProductDetails = () => {
 
   return (
     <div className="page-container min-h-[80vh]">
-      <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-slate-500 font-extrabold hover:text-blue-600 mb-8 transition-colors group bg-white px-5 py-2.5 rounded-full shadow-sm border border-slate-200">
+      <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 font-extrabold hover:text-blue-600 dark:hover:text-blue-400 mb-8 transition-colors group bg-white dark:bg-slate-800 px-5 py-2.5 rounded-full shadow-sm border border-slate-200 dark:border-slate-700">
         <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" /> Back
       </button>
 
-      <div className="bg-white rounded-3xl overflow-hidden shadow-md border border-slate-200 flex flex-col md:flex-row gap-0 md:gap-10">
-        <div className="w-full md:w-1/2 p-8 md:p-14 bg-white flex items-center justify-center relative border-b md:border-b-0 md:border-r border-slate-100 group">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, type: "spring" }}
+        className="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-700 flex flex-col md:flex-row gap-0 md:gap-10 transition-colors"
+      >
+        <div className="w-full md:w-1/2 p-8 md:p-14 bg-white dark:bg-slate-800 flex items-center justify-center relative border-b md:border-b-0 md:border-r border-slate-100 dark:border-slate-700 group">
           <button 
-            className="absolute top-6 right-6 p-4 bg-slate-50 border border-slate-200 hover:bg-white rounded-full text-slate-400 hover:text-red-500 transition-all shadow-md hover:shadow-lg hover:scale-110 active:scale-95 z-10"
+            className="absolute top-6 right-6 p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-700 rounded-full text-slate-400 dark:text-slate-500 hover:text-red-500 dark:hover:text-red-400 transition-all shadow-md hover:shadow-lg hover:scale-110 active:scale-95 z-10"
             onClick={() => toggleWishlist(product)}
             title={isWished ? "Remove from wishlist" : "Add to wishlist"}
           >
             {isWished ? <FaHeart className="text-red-500" size={24} /> : <FiHeart size={24} />}
           </button>
-          <img src={product.image} alt={product.title} className="max-w-full max-h-[500px] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700 ease-out" />
+          <img src={product.image} alt={product.title} className="max-w-full max-h-[500px] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700 ease-out mix-blend-multiply dark:mix-blend-normal dark:bg-white dark:p-6 dark:rounded-2xl" />
         </div>
 
         <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-          <p className="inline-block py-1.5 px-4 bg-blue-50 text-blue-600 font-black text-xs uppercase tracking-widest rounded-full mb-6 w-max border border-blue-100 shadow-inner">
+          <p className="inline-block py-1.5 px-4 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-black text-xs uppercase tracking-widest rounded-full mb-6 w-max border border-blue-100 dark:border-blue-800 shadow-inner">
             {product.category}
           </p>
-          <h1 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-tight tracking-tight">{product.title}</h1>
+          <h1 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 leading-tight tracking-tight">{product.title}</h1>
           
-          <div className="flex items-center gap-2 mb-8 bg-slate-50 w-max px-5 py-2.5 rounded-xl border border-slate-200 shadow-sm">
+          <div className="flex items-center gap-2 mb-8 bg-slate-50 dark:bg-slate-900 w-max px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm transition-colors">
             <div className="flex text-amber-400">
               <FiStar className="fill-amber-400" size={20} />
             </div>
-            <span className="font-extrabold text-slate-900 text-lg">{product.rating?.rate}</span>
-            <span className="text-slate-500 font-bold ml-1 text-sm">({product.rating?.count} verified reviews)</span>
+            <span className="font-extrabold text-slate-900 dark:text-white text-lg">{product.rating?.rate}</span>
+            <span className="text-slate-500 dark:text-slate-400 font-bold ml-1 text-sm">({product.rating?.count} verified reviews)</span>
           </div>
 
-          <div className="text-4xl md:text-5xl font-black text-slate-900 mb-8 tracking-tighter flex items-center gap-4">
+          <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-8 tracking-tighter flex items-center gap-4">
             ₹{product.price.toLocaleString('en-IN')}
-            <span className="text-sm font-black text-emerald-600 bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-200 uppercase tracking-wider shadow-inner">In Stock</span>
+            <span className="text-sm font-black text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-3 py-1.5 rounded-lg border border-emerald-200 dark:border-emerald-800/50 uppercase tracking-wider shadow-inner">In Stock</span>
           </div>
 
-          <p className="text-slate-600 text-lg leading-relaxed mb-10 font-medium">
+          <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-10 font-medium">
             {product.description}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-5 mb-10 border-b-2 border-slate-100 pb-10">
-            <div className="flex items-center border-2 border-slate-200 rounded-2xl overflow-hidden bg-slate-50 w-max focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-500/10 transition-all shadow-inner">
+          <div className="flex flex-col sm:flex-row gap-5 mb-10 border-b-2 border-slate-100 dark:border-slate-700 pb-10">
+            <div className="flex items-center border-2 border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-900 w-max focus-within:border-blue-500 dark:focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-500/10 transition-all shadow-inner relative">
               <button 
-                className="p-5 text-slate-500 hover:text-blue-600 hover:bg-white transition-colors active:bg-slate-100"
+                className="p-5 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-800 transition-colors active:bg-slate-100 dark:active:bg-slate-700"
                 onClick={() => setQuantity(q => Math.max(1, q - 1))}
               >
                 <FiMinus size={22} />
               </button>
-              <span className="w-14 text-center font-black text-2xl text-slate-900">{quantity}</span>
+              <span className="w-14 text-center font-black text-2xl text-slate-900 dark:text-white">{quantity}</span>
               <button 
-                className="p-5 text-slate-500 hover:text-blue-600 hover:bg-white transition-colors active:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed"
+                className="p-5 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-800 transition-colors active:bg-slate-100 dark:active:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed"
                 onClick={() => setQuantity(q => Math.min(5, q + 1))}
                 disabled={quantity >= 5}
                 title="Increase quantity (Max 5)"
@@ -106,7 +112,7 @@ const ProductDetails = () => {
             </div>
             
             <button 
-              className="flex-grow flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-black text-xl px-8 py-5 rounded-2xl transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/30 active:scale-95 shadow-lg shadow-blue-500/20"
+              className="flex-grow flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-xl px-8 py-5 rounded-2xl transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/40 active:scale-95 shadow-lg shadow-blue-500/20"
               onClick={() => {
                 addToCart(product, quantity);
               }}
@@ -115,28 +121,28 @@ const ProductDetails = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm font-bold text-slate-700">
-            <div className="flex items-center gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm transition-transform hover:-translate-y-1">
-              <div className="bg-blue-100 p-3 rounded-full text-blue-600">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm font-bold text-slate-700 dark:text-slate-300">
+            <div className="flex items-center gap-4 bg-slate-50 dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm transition-transform hover:-translate-y-1">
+              <div className="bg-blue-100 dark:bg-blue-900/50 p-3 rounded-full text-blue-600 dark:text-blue-400">
                 <FiTruck size={24} />
               </div>
-              <span>Free Delivery<br/><span className="text-slate-500 font-semibold text-xs mt-0.5 inline-block">Orders over ₹5,000</span></span>
+              <span>Free Delivery<br/><span className="text-slate-500 dark:text-slate-400 font-semibold text-xs mt-0.5 inline-block">Orders over ₹5,000</span></span>
             </div>
-            <div className="flex items-center gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm transition-transform hover:-translate-y-1">
-              <div className="bg-blue-100 p-3 rounded-full text-blue-600">
+            <div className="flex items-center gap-4 bg-slate-50 dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm transition-transform hover:-translate-y-1">
+              <div className="bg-blue-100 dark:bg-blue-900/50 p-3 rounded-full text-blue-600 dark:text-blue-400">
                 <FiRefreshCcw size={24} />
               </div>
-              <span>30 Days<br/><span className="text-slate-500 font-semibold text-xs mt-0.5 inline-block">Easy Returns</span></span>
+              <span>30 Days<br/><span className="text-slate-500 dark:text-slate-400 font-semibold text-xs mt-0.5 inline-block">Easy Returns</span></span>
             </div>
-            <div className="flex items-center gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm transition-transform hover:-translate-y-1">
-              <div className="bg-blue-100 p-3 rounded-full text-blue-600">
+            <div className="flex items-center gap-4 bg-slate-50 dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm transition-transform hover:-translate-y-1">
+              <div className="bg-blue-100 dark:bg-blue-900/50 p-3 rounded-full text-blue-600 dark:text-blue-400">
                 <FiShield size={24} />
               </div>
-              <span>Secure<br/><span className="text-slate-500 font-semibold text-xs mt-0.5 inline-block">100% Guaranteed</span></span>
+              <span>Secure<br/><span className="text-slate-500 dark:text-slate-400 font-semibold text-xs mt-0.5 inline-block">100% Guaranteed</span></span>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

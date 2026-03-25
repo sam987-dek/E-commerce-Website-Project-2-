@@ -2,9 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const animations = {
-  initial: { opacity: 0, y: 15, scale: 0.98 },
-  animate: { opacity: 1, y: 0, scale: 1 },
-  exit: { opacity: 0, y: -15, scale: 0.98 },
+  initial: { opacity: 0, x: -30, filter: 'blur(4px)' },
+  animate: { opacity: 1, x: 0, filter: 'blur(0px)' },
+  exit: { opacity: 0, x: 30, filter: 'blur(4px)' },
 };
 
 const AnimatedPage = ({ children }) => {
@@ -14,8 +14,8 @@ const AnimatedPage = ({ children }) => {
       initial="initial"
       animate="animate"
       exit="exit"
-      transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="w-full h-full origin-top"
+      transition={{ duration: 0.5, ease: 'easeOut', type: "spring", bounce: 0.2 }}
+      className="w-full h-full origin-center"
     >
       {children}
     </motion.div>

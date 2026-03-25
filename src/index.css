@@ -1,6 +1,5 @@
 @import "tailwindcss";
-
-@layer utilities {
+@custom-variant dark (&:where(.dark, .dark *));@layer utilities {
   .page-container {
     @apply max-w-7xl mx-auto px-4 py-10;
   }
